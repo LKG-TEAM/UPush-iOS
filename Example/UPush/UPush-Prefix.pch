@@ -1,0 +1,45 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    @import UIKit;
+    @import Foundation;
+#endif
+
+//参数宏定义
+
+/*******************************************基础配置***********************************************/
+#define HOST @"122.193.26.154"
+#define PORT 8240
+#define UserName @"abc"
+#define PassWord @"abc"
+#define AppId @"UPushDemo"
+#define Certificate @"UPush"
+
+/*******************************************业务配置***********************************************/
+#define DeviceType 50
+#define UserType 1
+#define Publish_qos 1
+#define Subscribe_qos 1
+
+/*******************************************html配置***********************************************/
+#define H5_HOST @"122.193.26.154"
+#define H5_PORT @"8244"
+#define ApiKey @"ab123"
+#define ApiSecret @"cd456"
+
+#import "UPushAppDelegate.h"
+
+#import "DSToast.h"
+
+//注意，关于 iOS10 系统版本的判断，可以用下面这个宏来判断。不能再用截取字符的方法。
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
