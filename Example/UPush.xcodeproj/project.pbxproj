@@ -30,6 +30,7 @@
 		AE0205BA1FDA618500518A28 /* DSToast.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0205B41FDA618500518A28 /* DSToast.m */; };
 		AE0205BB1FDA618500518A28 /* GPRS.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0205B71FDA618500518A28 /* GPRS.m */; };
 		AE0205BC1FDA618500518A28 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0205B91FDA618500518A28 /* Utils.m */; };
+		AEA47B9D1FDE5E7800E6DF35 /* UPushSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AEA47B9C1FDE5E7700E6DF35 /* UPushSDK.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,6 @@
 		1E0AE6592E7F491169E2DB56 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		257F343888B54F879E894D67 /* Pods_UPush_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UPush_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F4DEB37AE27551C4D5C86A /* Pods_UPush_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UPush_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52C327C9EC7114DB1016C62C /* UPush.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = UPush.podspec; path = ../UPush.podspec; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* UPush_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UPush_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,6 +82,7 @@
 		AE0205B71FDA618500518A28 /* GPRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPRS.m; sourceTree = "<group>"; };
 		AE0205B81FDA618500518A28 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		AE0205B91FDA618500518A28 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		AEA47B9C1FDE5E7700E6DF35 /* UPushSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UPushSDK.podspec; path = ../UPushSDK.podspec; sourceTree = "<group>"; };
 		B10499E86527E1F716BB3E99 /* Pods-UPush_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPush_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UPush_Example/Pods-UPush_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D438D4388EDF82C3A94881BA /* Pods-UPush_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPush_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-UPush_Example/Pods-UPush_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,7 +212,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				52C327C9EC7114DB1016C62C /* UPush.podspec */,
+				AEA47B9C1FDE5E7700E6DF35 /* UPushSDK.podspec */,
 				19DF10A27DF86EEF3E248510 /* README.md */,
 				1E0AE6592E7F491169E2DB56 /* LICENSE */,
 			);
@@ -344,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				AEA47B9D1FDE5E7800E6DF35 /* UPushSDK.podspec in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				AE0205A11FDA602800518A28 /* UPush.der in Resources */,
@@ -387,7 +389,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UPush_Example/Pods-UPush_Example-resources.sh",
-				"${PODS_ROOT}/UPush/UPush/UPush.bundle",
+				"${PODS_ROOT}/UPushSDK/UPush/UPush.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
