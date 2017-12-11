@@ -1,6 +1,6 @@
 use_frameworks!
 
 target 'UPush_Example' do
-  pod 'UPush', '1.0.7-ZXJT'
+  pod 'UPushSDK'
   pod 'XLForm', '3.3.0'
 end

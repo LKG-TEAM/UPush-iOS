@@ -31,7 +31,11 @@ NSString *const kApiKey = @"ApiKey";
 NSString *const kApiSecret = @"ApiSecret";
 NSString *const kDeviceType = @"DeviceType";
 
+NSString *const kOpenSystemPush = @"OpenSystemPushBool";
+
 @interface SettingViewController ()
+
+@property (nonatomic, strong) XLFormRowDescriptor *row_replace;
 
 @end
 
@@ -245,6 +249,15 @@ NSString *const kDeviceType = @"DeviceType";
     [row.cellConfigAtConfigure setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     [section addFormRow:row];
     
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kOpenSystemPush rowType:XLFormRowDescriptorTypeButton title:[NSString stringWithFormat:@"系统推送开关:%@",[UPushManager isAllowedNotification]?@"开":@"关"]];
+    [row.cellConfigAtConfigure setObject:[UIColor whiteColor] forKey:@"backgroundColor"];
+    [row.cellConfigAtConfigure setObject:[NSNumber numberWithInteger:0] forKey:@"selectionStyle"];
+    [row.cellConfig setObject:[UIColor blackColor] forKey:@"textLabel.color"];
+    [row.cellConfig setObject:[UIFont fontWithName:@"Helvetica" size:15] forKey:@"textLabel.font"];
+    row.action.formSelector = @selector(didTouchButton:);
+    _row_replace = row;
+    [section addFormRow:row];
+    
     return [super initWithForm:formDescriptor];
 }
 
@@ -337,6 +350,16 @@ NSString *const kDeviceType = @"DeviceType";
     
 }
 
+- (void)didTouchButton:(UIButton *)button
+{
+    //    [UPushForeNotification handleRemoteNotification:@{@"title":@"test"} soundID:1312];
+    UPushAppDelegate *appDelegate = (UPushAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.sessionManager checkAlertIfNeeded:^(BOOL notificationOpened, BOOL inOneDay) {
+        NSLog(@"notificationOpened: %@",notificationOpened?@"系统通知是已开启的":@"系统通知是未开启的");
+        NSLog(@"inOneDay: %@",inOneDay?@"是同一天内":@"不在同一天");
+    }];
+}
+
 - (void)connect{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *formValues = self.form.formValues;
@@ -357,6 +380,15 @@ NSString *const kDeviceType = @"DeviceType";
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(connect)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UPushSystemNotificationSwitch:) name:kUPushSystemNotificationSwitch object:nil];
+}
+
+- (void)UPushSystemNotificationSwitch:(NSNotification *)n
+{
+    BOOL opened = [(NSNumber *)[n object] boolValue];
+    NSLog(@"opened: %@",opened?@YES:@NO);
+    _row_replace.title = [NSString stringWithFormat:@"系统推送开关:%@",[UPushManager isAllowedNotification]?@"开":@"关"];
+    [self reloadFormRow:_row_replace];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

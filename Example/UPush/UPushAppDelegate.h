@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-#import <UPush/UPushManager.h>
+#import <UPushSDK/UPushManager.h>
 
 @interface UPushAppDelegate : UIResponder <UIApplicationDelegate, UPushManagerDelegate>
 
