@@ -11,7 +11,7 @@ s.source           = { :git => 'https://github.com/LKG-TEAM/UPush-iOS.git', :bra
 s.source_files  = "UPush/*.{h}"
 s.vendored_libraries = "UPush/libUPush.a"
 s.frameworks = 'UIKit'
-s.resources = ["UPush/UPush.bundle", "UPush/UPush.der"]
+s.resources = "UPush/UPush.bundle"
 s.public_header_files = 'UPush/*.{h}'
 s.libraries  = 'z'
 s.module_name = 'UPushSDK'
