@@ -7,7 +7,7 @@ s.homepage         = 'https://github.com/LKG-TEAM/UPush-iOS'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'linkstec@linkstec.com' => 'linkstec@linkstec.com' }
 s.platform     = :ios, "7.0"
-s.source           = { :git => 'https://github.com/LKG-TEAM/UPush-iOS.git' }
+s.source           = { :git => 'https://github.com/LKG-TEAM/UPush-iOS.git' :tag => s.version.to_s}
 s.source_files  = "UPush/*.{h}"
 s.vendored_libraries = "UPush/libUPush.a"
 s.frameworks = 'UIKit'
