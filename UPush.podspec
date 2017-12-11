@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-s.name             = 'UPush'
+s.name             = 'UPushSDK'
 s.version          = '1.0.0'
 s.summary          = 'UPush SDK for iOS.'
 s.requires_arc        = true
@@ -14,5 +14,5 @@ s.frameworks = 'UIKit'
 s.resources = ["UPush/UPush.bundle", "UPush/UPush.der"]
 s.public_header_files = 'UPush/*.{h}'
 s.libraries  = 'z'
-s.module_name = 'UPush'
+s.module_name = 'UPushSDK'
 end
