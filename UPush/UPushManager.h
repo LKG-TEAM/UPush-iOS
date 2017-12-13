@@ -6,17 +6,14 @@
 //  Copyright © 2017年 Linkage. All rights reserved.
 //  UPush 1.0.1  e.g: bindTokenToSever: publishHandler: 支持未启动SDK就可调用
 
-//  Modify by 阳海浪 on 2017/6/8.
+//  Modify by 潘涛 on 2017/12/8.
 //  修改内容如下：
-//    1. 去掉config 时的userType参数
-//    2. 增加了getUserId和getUserType方法 主要用于消息中心参数传入
-//    3. 根据服务端消息，取消上线下线消息请求。
-//    4. 内部程序优化
-//    5. 增加不接收通知开关方法:enablePush, disablePush。
-//       注意:(disable状态下，长连接还在,仍然可以查询未读数.仅仅接收不到推送过来的数据， 也接收不到apns)
-//    6. 修改上下线机制。（在后台下线，前台上线)
+//    1. 前台消息弹框内置，新增useSDKPop属性(默认NO)来控制是否使用SDK内置消息弹框
+//    2. 新增SDK内置消息弹框的点击事件回调方法：- (void)upushBannerViewDidClick:(NSNotification *)notification
+//    3. 新增当天内有且只有一次设置app系统通知开关的方法：- (void)checkAlertIfNeeded:(void(^)(BOOL notificationOpened, BOOL inOneDay))block
+//    4. 新增app系统通知开关方法：+ (BOOL)isAllowedNotification
 //
-//  UPush 1.0.5
+//  UPush 1.0.7
 
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
