@@ -81,6 +81,7 @@
 		AE0205B81FDA618500518A28 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		AE0205B91FDA618500518A28 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		AEA47B9A1FDE568D00E6DF35 /* UPushSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UPushSDK.podspec; path = ../UPushSDK.podspec; sourceTree = "<group>"; };
+		AEB13A091FDF76C7002B4F26 /* UPush_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UPush_Example.entitlements; sourceTree = "<group>"; };
 		B10499E86527E1F716BB3E99 /* Pods-UPush_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPush_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UPush_Example/Pods-UPush_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D438D4388EDF82C3A94881BA /* Pods-UPush_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UPush_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-UPush_Example/Pods-UPush_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +123,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				AEB13A091FDF76C7002B4F26 /* UPush_Example.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for UPush */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -219,26 +221,10 @@
 		AE0205AF1FDA618500518A28 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AE0205B01FDA618500518A28 /* ForeNotification */,
 				AE0205B21FDA618500518A28 /* Toast */,
 				AE0205B51FDA618500518A28 /* Utils */,
 			);
 			path = lib;
-			sourceTree = "<group>";
-		};
-		AE0205B01FDA618500518A28 /* ForeNotification */ = {
-			isa = PBXGroup;
-			children = (
-				AE0205B11FDA618500518A28 /* Classes */,
-			);
-			path = ForeNotification;
-			sourceTree = "<group>";
-		};
-		AE0205B11FDA618500518A28 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		AE0205B21FDA618500518A28 /* Toast */ = {
@@ -315,6 +301,11 @@
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = WP3J3N3HMS;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -561,6 +552,7 @@
 			baseConfigurationReference = B10499E86527E1F716BB3E99 /* Pods-UPush_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UPush_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Linkage Software CO.,LTD.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -593,6 +585,7 @@
 			baseConfigurationReference = D438D4388EDF82C3A94881BA /* Pods-UPush_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UPush_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Linkage Software CO.,LTD.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

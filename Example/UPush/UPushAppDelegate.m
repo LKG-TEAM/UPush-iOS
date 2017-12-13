@@ -258,7 +258,7 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     _token = token;
-    //    NSLog(@"My token is:%@", token);
+        NSLog(@"My token is:%@", token);
     [self.sessionManager bindTokenToSever:_token publishHandler:^(NSError *error) {
         if (!error) {
         }

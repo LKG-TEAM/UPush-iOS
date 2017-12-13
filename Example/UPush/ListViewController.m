@@ -10,7 +10,7 @@
 #import "DetailViewController.h"
 #import "SettingViewController.h"
 #import "UPushAppDelegate.h"
-#import "Utils.h"
+#import "GPRS.h"
 
 @interface ListViewController (){
     BOOL _isLoaded;
@@ -41,7 +41,11 @@
                                              selector:@selector(webViewHistoryDidChange)
                                                  name:@"WebHistoryItemChangedNotification"
                                                object:nil];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (NSString*)convertToJSONData:(id)infoDict
@@ -73,6 +77,12 @@
     
 }
 
+- (void)gprs{
+    NSArray *gprs = [GPRS getDataCounters];
+    self.upLoad.text = [NSString stringWithFormat:@"%@",gprs[0]];
+    self.downLoad.text = [NSString stringWithFormat:@"%@",gprs[1]];
+}
+
 - (void)setMsgId:(NSString *)msgId{
     _msgId = msgId;
     if (_hash.length > 0) {// 说明不是在首页
@@ -81,7 +91,11 @@
     
     _appDelegate  = (UPushAppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    DSToast *toast = [[DSToast alloc] initWithText:[NSString stringWithFormat:@"userId:%@, userType:%lu",[[_appDelegate sessionManager] getUserId], (unsigned long)[[_appDelegate sessionManager] getUserType]]];
+    [toast showInView:[UIApplication sharedApplication].keyWindow showType:DSToastShowTypeBottom];
+    
     if (self.navigationController.childViewControllers.count == 1) {
+        DetailViewController *detailVC = [[DetailViewController alloc] init];
         
         //
         //       NSString *u =  [[_appDelegate sessionManager] getUserId];
@@ -110,11 +124,8 @@
         //        alert1.message = [NSString stringWithFormat:@"%li", t];
         //        [alert1 show];
         
-        [self getUserIdAndUserType:^(NSString *userId, NSInteger userType) {
-            DetailViewController *detailVC = [[DetailViewController alloc] init];
-            detailVC.urlStr = [[Utils  getUrlStrWithUserId:userId userType:userType] stringByAppendingString:[NSString stringWithFormat:@"&msgId=%@",msgId]];
-            [self.navigationController pushViewController:detailVC animated:YES];
-        }];
+        
+        detailVC.urlStr = [[Utils  getUrlStrWithUserId:[[_appDelegate sessionManager] getUserId] userType:[[_appDelegate sessionManager] getUserType]] stringByAppendingString:[NSString stringWithFormat:@"&msgId=%@",msgId]];
         
         
         //        //初始化AlertView
@@ -128,7 +139,12 @@
         //        alert3.message = detailVC.urlStr;
         //        [alert3 show];
         
+        [self.navigationController pushViewController:detailVC animated:YES];
     }else if (self.navigationController.childViewControllers.count == 2){
+        
+        
+        
+        DetailViewController *detailVC = (DetailViewController *)self.navigationController.childViewControllers[1];
         
         //        NSString *u =  [[_appDelegate sessionManager] getUserId];
         //
@@ -159,11 +175,8 @@
         //        detailVC.urlStr = [[Utils  getUrlStrWithUserId:[_appDelegate getUserId] userType:[_appDelegate getUserType]] stringByAppendingString:[NSString stringWithFormat:@"&msgId=%@",msgId]];
         
         
-        [self getUserIdAndUserType:^(NSString *userId, NSInteger userType) {
-            DetailViewController *detailVC = (DetailViewController *)self.navigationController.childViewControllers[1];
-            detailVC.urlStr = [[Utils  getUrlStrWithUserId:userId userType:userType] stringByAppendingString:[NSString stringWithFormat:@"&msgId=%@",msgId]];
-            [detailVC reloadWebView];
-        }];
+        
+        detailVC.urlStr = [[Utils  getUrlStrWithUserId:[[_appDelegate sessionManager] getUserId] userType:[[_appDelegate sessionManager] getUserType]] stringByAppendingString:[NSString stringWithFormat:@"&msgId=%@",msgId]];
         
         
         //        //初始化AlertView
@@ -177,21 +190,21 @@
         //        alert3.message = detailVC.urlStr;
         //        [alert3 show];
         
+        [detailVC reloadWebView];
     }
+    NSLog(@"[[_appDelegate sessionManager] getUserId]:   %@",[[_appDelegate sessionManager] getUserId]);
+    NSLog(@"[[_appDelegate sessionManager] getUserType]: %lu",(unsigned long)[[_appDelegate sessionManager] getUserType]);
 }
 
 
 - (void)requestWebView{
-//    _appDelegate = (UPushAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSString *_userId = [_appDelegate getUserId];
-//    NSInteger _userType = [_appDelegate getUserType];
+    _appDelegate = (UPushAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *_userId = [_appDelegate getUserId];
+    NSInteger _userType = [_appDelegate getUserType];
     
-    __weak typeof(self)weakSelf = self;
-    [self getUserIdAndUserType:^(NSString *userId, NSInteger userType) {
-        NSString *urlStr = [Utils getUrlStrWithUserId:userId userType:userType];
-        _request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-        [weakSelf.webView loadRequest:_request];
-    }];
+    NSString *urlStr = [Utils getUrlStrWithUserId:_userId userType:_userType];
+    _request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [self.webView loadRequest:_request];
 }
 
 
@@ -353,27 +366,6 @@
     return _downLoad;
 }
 
-
-- (void)getUserIdAndUserType:(void (^)(NSString *userId, NSInteger userType))block
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *_userId = nil;
-    if ([userDefaults objectForKey:@"userId"]) {
-        if ([[userDefaults objectForKey:@"userId"] isEqualToString:@"nil"]) {
-            
-        }else{
-            _userId = [userDefaults objectForKey:@"userId"];
-        }
-    }
-    
-    NSInteger _userType=1;
-    if ([userDefaults objectForKey:@"userType"]) {
-        _userType =[[userDefaults objectForKey:@"userType"] integerValue];
-    }
-    if (block) {
-        block(_userId, _userType);
-    }
-}
 
 @end
 

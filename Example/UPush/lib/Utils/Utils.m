@@ -78,7 +78,8 @@
 //    }
     
     NSString *appId = [userDefaults objectForKey:@"appId"] ? [userDefaults objectForKey:@"appId"] : AppId;
-    
+    NSLog(@" ------------ userId  : %@",userId);
+    NSLog(@" ------------ userType: %ld",(long)userType);
     return [NSString stringWithFormat:@"https://%@:%@/?userId=%@&userType=%li&appid=%@&apikey=%@&apisecret=%@",h5_HOST,h5_PORT,userId,(long)userType,appId,apiKey,apiSecret];
 }
 
