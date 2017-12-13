@@ -222,26 +222,10 @@
 		AE0205AF1FDA618500518A28 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AE0205B01FDA618500518A28 /* ForeNotification */,
 				AE0205B21FDA618500518A28 /* Toast */,
 				AE0205B51FDA618500518A28 /* Utils */,
 			);
 			path = lib;
-			sourceTree = "<group>";
-		};
-		AE0205B01FDA618500518A28 /* ForeNotification */ = {
-			isa = PBXGroup;
-			children = (
-				AE0205B11FDA618500518A28 /* Classes */,
-			);
-			path = ForeNotification;
-			sourceTree = "<group>";
-		};
-		AE0205B11FDA618500518A28 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		AE0205B21FDA618500518A28 /* Toast */ = {

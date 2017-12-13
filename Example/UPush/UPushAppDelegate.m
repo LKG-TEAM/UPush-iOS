@@ -28,6 +28,8 @@
     self.sessionManager = [[UPushManager alloc] init];
     //2.设置代理
     self.sessionManager.delegate = self;
+    //使用SDK内置消息弹框
+    self.sessionManager.useSDKPop = YES;
     [self MQTTSetup];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.listVC];
     self.window.backgroundColor = [UIColor whiteColor];

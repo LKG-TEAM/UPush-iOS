@@ -47,9 +47,9 @@ typedef void (^MQTTPublishHandler)(NSError *error);
 - (void)handleMessage:(NSDictionary *)msg onTopic:(NSString *)topic retained:(BOOL)retained;
 
 /**
- SDK内消息弹框的点击事件
+ SDK内消息弹框的点击事件(v1.0.7新增)
 
- @param notification 消息体
+ @param notification 消息体(获取数据使用[notification object]类方法)
  */
 - (void)upushBannerViewDidClick:(NSNotification *)notification;
 
@@ -383,6 +383,11 @@ In the SDK this is the constant kSystemSoundID_Vibrate.
  @return YES--系统设置内开启了   NO--系统设置内关闭了
  */
 + (BOOL)isAllowedNotification;
+
+/**
+ 是否使用SDK内置消息弹框(默认NO)
+ */
+@property (nonatomic, assign) BOOL useSDKPop;
 /******************************************v1.0.7新增功能********************************************/
 
 @end
