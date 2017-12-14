@@ -11,19 +11,19 @@
 #endif
 
 #ifdef __OBJC__
-    @import UIKit;
-    @import Foundation;
+@import UIKit;
+@import Foundation;
 #endif
 
 //参数宏定义
 
 /*******************************************基础配置***********************************************/
-#define HOST @"122.193.26.154"
-#define PORT 8240
-#define UserName @"abc"
-#define PassWord @"abc"
-#define AppId @"UPushDemo"
-#define Certificate @"UPush"
+#define HOST @"111.13.63.3"
+#define PORT 1883
+#define UserName @"testuser"
+#define PassWord @"12345678"
+#define AppId @"zxjt_client"
+#define Certificate @"lpush"
 
 /*******************************************业务配置***********************************************/
 #define DeviceType 50
@@ -32,10 +32,10 @@
 #define Subscribe_qos 1
 
 /*******************************************html配置***********************************************/
-#define H5_HOST @"122.193.26.154"
-#define H5_PORT @"8244"
-#define ApiKey @"ab123"
-#define ApiSecret @"cd456"
+#define H5_HOST @"111.13.63.3"
+#define H5_PORT @"1883"
+#define ApiKey @"testuser"
+#define ApiSecret @"abc"
 
 #import "UPushAppDelegate.h"
 
@@ -45,3 +45,4 @@
 
 //注意，关于 iOS10 系统版本的判断，可以用下面这个宏来判断。不能再用截取字符的方法。
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
