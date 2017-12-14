@@ -11,3 +11,8 @@ Modify by 潘涛 on 2017/12/8.
 注：从2017.12.14起的v1.0.7版本开始，支持cocoapods；      
       pod 'UPushSDK', '1.0.7-ZXJT’(中信建投对应的版本,.der、.png、.txt都在UPush.bundle内，只要写代码集成即可，代码集成部分不变)      
       若直接pod 'UPushSDK’，则pod导入的是苏州环境的demo版本
+
+注：当不是第一次使用pod 'UPushSDK', '1.0.7-ZXJT’时，
+    1.需手动删除~/Library/Caches/CocoaPods/Pods/Release/UPushSDK/路径下的1.0.7-ZXJT-ca571文件夹
+    2.手动删除工程Pods路径下的UPushSDK文件夹
+    3.使用pod update
