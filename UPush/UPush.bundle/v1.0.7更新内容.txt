@@ -1,0 +1,13 @@
+UPush v1.0.7:
+
+Modify by 潘涛 on 2017/12/8.
+修改内容如下：
+   1. 前台消息弹框内置，新增useSDKPop属性(默认NO)来控制是否使用SDK内置消息弹框
+   2. 新增SDK内置消息弹框的点击事件回调方法：- (void)upushBannerViewDidClick:(NSNotification *)notification
+   3. 新增当天内有且只有一次设置app系统通知开关的方法：- (void)checkAlertIfNeeded:(void(^)(BOOL notificationOpened, BOOL inOneDay))block
+   4. 新增app系统通知开关方法：+ (BOOL)isAllowedNotification
+   
+
+注：从2017.12.14起的v1.0.7版本开始，支持cocoapods；      
+      pod 'UPushSDK', '1.0.7-ZXJT’(中信建投对应的版本,.der、.png、.txt都在UPush.bundle内，只要写代码集成即可，代码集成部分不变)      
+      若直接pod 'UPushSDK’，则pod导入的是苏州环境的demo版本
