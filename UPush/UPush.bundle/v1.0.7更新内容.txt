@@ -15,4 +15,4 @@ Modify by 潘涛 on 2017/12/8.
 注：当不是第一次使用pod 'UPushSDK', '1.0.7-ZXJT’时，
     1.需手动删除~/Library/Caches/CocoaPods/Pods/Release/UPushSDK/路径下的1.0.7-ZXJT-ca571文件夹
     2.手动删除工程Pods路径下的UPushSDK文件夹
-    3.使用pod update
+    3.再进行pod install或者pod update
