@@ -1,27 +1,14 @@
-////
+//
 //  UPushManager.h
 //  UPush
 //
 //  Created by 潘涛 on 2017/3/8.
 //  Copyright © 2017年 Linkage. All rights reserved.
+//
 //  UPush 1.0.1  e.g: bindTokenToSever: publishHandler: 支持未启动SDK就可调用
 
-//  Modify by 阳海浪 on 2017/6/8.
-//  修改内容如下：
-//    1. 去掉config 时的userType参数
-//    2. 增加了getUserId和getUserType方法 主要用于消息中心参数传入
-//    3. 根据服务端消息，取消上线下线消息请求。
-//    4. 内部程序优化
-//    5. 增加不接收通知开关方法:enablePush, disablePush。
-//       注意:(disable状态下，长连接还在,仍然可以查询未读数.仅仅接收不到推送过来的数据， 也接收不到apns)
-//    6. 修改上下线机制。（在后台下线，前台上线)
-//
-//  UPush 1.0.5
 
 #import <Foundation/Foundation.h>
-#import <UserNotifications/UserNotifications.h>
-
-static NSString * const kUPushSystemNotificationSwitch = @"UPushSystemNotificationSwitch";
 
 @protocol UPushManagerDelegate <NSObject>
 
@@ -46,12 +33,7 @@ typedef void (^MQTTPublishHandler)(NSError *error);
 
 - (void)handleMessage:(NSDictionary *)msg onTopic:(NSString *)topic retained:(BOOL)retained;
 
-/**
- SDK内消息弹框的点击事件(v1.0.7新增)
 
- @param notification 消息体(获取数据使用[notification object]类方法)
- */
-- (void)upushBannerViewDidClick:(NSNotification *)notification;
 
 /** 获取未读消息条数
  @param msgCnt 未读消息条数
@@ -175,24 +157,6 @@ typedef void (^MQTTPublishHandler)(NSError *error);
  @return userType
  */
 - (NSUInteger)getUserType;
-
-
-/**
- * 获取当前是否可以接收通知及在线消息 YES能， NO不能
- */
-- (Boolean) getPushState;
-
-
-/**
- * 使用通知 能接收APNS通知，以及接收在线消息。
- */
-- (void) enablePush;
-
-
-/***
- * 禁用推送 关闭APNS通知，关闭在线消息，但是能查询未读数。
- */
-- (void) disablePush;
 
 /*************************************************铃声提醒、静音震动功能************************************************/
 
@@ -369,25 +333,5 @@ In the SDK this is the constant kSystemSoundID_Vibrate.
  YES -- 开启静音震动
  */
 @property (nonatomic, assign) BOOL openShock;
-
-/******************************************v1.0.7新增功能********************************************/
-
-/**
- 检查未开启系统通知并当天有且只有提醒过一次
- */
-- (void)checkAlertIfNeeded:(void(^)(BOOL notificationOpened, BOOL inOneDay))block;
-
-/**
- 是否开启系统通知权限
-
- @return YES--系统设置内开启了   NO--系统设置内关闭了
- */
-+ (BOOL)isAllowedNotification;
-
-/**
- 是否使用SDK内置消息弹框(默认NO)
- */
-@property (nonatomic, assign) BOOL useSDKPop;
-/******************************************v1.0.7新增功能********************************************/
 
 @end
